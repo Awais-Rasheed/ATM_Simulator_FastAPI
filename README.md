@@ -1,8 +1,3 @@
-Perfect 👍 Here's the enhanced **README** with a **🎥 Quick Demo GIF section** added — ideal for showcasing your ATM Simulator on GitHub.
-
----
-
-````{"id":"14593","variant":"standard","title":"README with Quick Demo GIF for ATM Simulator (React + FastAPI)"}
 # 🏦 ATM Management System
 
 A **full-stack ATM Management System** built with **React (frontend)** and **FastAPI (backend)** that allows users to create, view, update, and delete bank accounts. The project simulates basic ATM functionalities such as managing accounts, checking balances, and handling transactions in a clean, responsive UI.
