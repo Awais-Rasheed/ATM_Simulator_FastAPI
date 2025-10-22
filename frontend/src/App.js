@@ -6,6 +6,7 @@ import Withdraw from "./pages/Withdraw";
 import ChangePin from "./pages/ChangePin";
 import AddAccount from "./pages/AddAccount";
 import CheckBalance from "./pages/CheckBalance";
+import ViewAccounts from "./pages/ViewAccounts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/change-pin" element={<ChangePin />} />
           <Route path="/add-account" element={<AddAccount />} />
           <Route path="/check-balance" element={<CheckBalance />} />
+          <Route path="/view-accounts" element={<ViewAccounts />} />
         </Routes>
 
       <ToastContainer position="top-center" />

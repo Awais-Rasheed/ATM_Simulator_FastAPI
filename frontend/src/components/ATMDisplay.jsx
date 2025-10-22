@@ -12,7 +12,7 @@ const ATMDisplay = ({ title, children }) => {
         background: "linear-gradient(145deg, #f5f5f5, #ffffff)",
         border: "3px solid #000000",
         borderRadius: "20px",
-        width: 500,
+        width: 550,
         height: 600,
         margin: "50px auto",
         padding: "20px",
