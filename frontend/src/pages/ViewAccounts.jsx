@@ -72,24 +72,7 @@ const ViewAccounts = () => {
     );
   };
 
-  // Update account
-  const handleUpdate = async (account_number) => {
-    const newTitle = prompt("Enter new account title:");
-    if (!newTitle) return;
-
-    try {
-      await axios.put(
-        `http://127.0.0.1:8000/update-account/${account_number}`,
-        null,
-        { params: { updated_title: newTitle } }
-      );
-      toast.success("✅ Account updated successfully!");
-      fetchAccounts();
-    } catch (error) {
-      console.error(error);
-      toast.error("❌ Failed to update account!");
-    }
-  };
+  
 
   useEffect(() => {
     fetchAccounts();
@@ -130,14 +113,7 @@ const ViewAccounts = () => {
                   <TableCell>{acc.account_balance.toLocaleString()}</TableCell>
                   <TableCell align="center">
                     <Stack direction="row" spacing={1} justifyContent="center">
-                      <Button
-                        variant="contained"
-                        color="success"
-                        size="small"
-                        onClick={() => handleUpdate(acc.account_number)}
-                      >
-                        ✏️ Update
-                      </Button>
+                      
                       <Button
                         variant="outlined"
                         color="error"
