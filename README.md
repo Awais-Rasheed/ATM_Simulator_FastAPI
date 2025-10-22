@@ -1,145 +1,171 @@
-
-# 🏦 ATM Management System – FastAPI
-
-A simple **ATM Management System** built using **FastAPI** and **SQLModel** with a **SQLite** database.  
-This project demonstrates how to create, update, and manage bank accounts through RESTful API endpoints.
+Perfect 👍 Here's the enhanced **README** with a **🎥 Quick Demo GIF section** added — ideal for showcasing your ATM Simulator on GitHub.
 
 ---
 
-## 🚀 Features
+````{"id":"14593","variant":"standard","title":"README with Quick Demo GIF for ATM Simulator (React + FastAPI)"}
+# 🏦 ATM Management System
 
-- Create new bank accounts  
-- View all registered accounts  
-- Deposit and withdraw money  
-- Change account PIN  
-- Delete an existing account  
-- Persistent data using **SQLite**  
-- Built with **FastAPI** and **SQLModel**
+A **full-stack ATM Management System** built with **React (frontend)** and **FastAPI (backend)** that allows users to create, view, update, and delete bank accounts. The project simulates basic ATM functionalities such as managing accounts, checking balances, and handling transactions in a clean, responsive UI.
 
 ---
 
-## 🛠️ Tech Stack
+## 🎥 Quick Demo
 
-- **Backend Framework:** FastAPI  
-- **Database:** SQLite  
-- **ORM:** SQLModel  
-- **Language:** Python 3.8+
+> 🎬 Add your demo GIF or short video here to show the project in action!
+
+| ATM Simulator Demo |
+|--------------------|
+| ![ATM Demo](./screenshots/ATM_Simulator_FastAPI.webm) |
+
+*(You can record your screen using OBS Studio or ScreenToGif, then export a GIF and place it in `/frontend/public/screenshots/demo.gif`.)*
 
 ---
 
-## 📁 Project Structure
+## 🚀 Tech Stack
+
+**Frontend:**
+- React.js (Vite)
+- Material UI (MUI)
+- Axios
+- React Toastify
+
+**Backend:**
+- FastAPI
+- SQLite / PostgreSQL (configurable)
+- Pydantic
+- Uvicorn
+
+---
+
+## ✨ Features
+
+### 🖥️ Frontend (React)
+- Add new bank accounts  
+- View all existing accounts with balance  
+- Update account title  
+- Delete accounts with confirmation prompt  
+- Real-time toast notifications  
+- Responsive and modern ATM-style UI  
+
+### ⚙️ Backend (FastAPI)
+- RESTful API endpoints  
+- CRUD operations for accounts  
+- CORS enabled for React frontend  
+- Data validation using Pydantic models  
+
+---
+
+## 📂 Project Structure
 
 ```
-📦 atm-fastapi
- ┣ 📜 main.py
- ┣ 📜 requirements.txt
- ┣ 📜 .gitignore
- ┗ 📜 README.md
+ATM_Management_System/
+│
+├── backend/                     # FastAPI backend
+│   ├── main.py                   # FastAPI app entry
+│   ├── account.db               # DB setup and connection  
+│   └── ...
+│
+├── frontend/                    # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── ATMDisplay.jsx
+│   │   ├── pages/
+│   │   │   ├── AddAccount.jsx
+│   │   │   └── Deposit.jsx
+│   │   │   └── CheckBalance.jsx
+│   │   │   └── ChangePin.jsx
+│   │   │   └── Home.jsx
+│   │   │   ├── ViewAccounts.jsx
+│   │   │   └── Withdraw.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── ...
+│   └── package.json
+│
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚡ Setup Instructions
 
-### 1️⃣ Clone the repository
+### 1️⃣ Backend Setup (FastAPI)
 ```bash
-git clone https://github.com/Awais-Rasheed/atm-fastapi.git
-cd atm-fastapi
-```
-
-### 2️⃣ Create a virtual environment
-```bash
+cd backend
 python -m venv venv
-```
-
-Activate it:
-- **Windows:**  
-  ```bash
-  venv\Scripts\activate
-  ```
-- **Linux/Mac:**  
-  ```bash
-  source venv/bin/activate
-  ```
-
-### 3️⃣ Install dependencies
-```bash
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-Or manually:
-```bash
-pip install fastapi uvicorn sqlmodel
-```
-
-### 4️⃣ Run the server
-```bash
 uvicorn main:app --reload
 ```
 
-Then open your browser at 👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+Backend runs on:  
+👉 `http://127.0.0.1:8000`
 
 ---
 
-## 🧩 API Endpoints
+### 2️⃣ Frontend Setup (React)
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/` | Welcome message |
-| `POST` | `/add-account` | Create a new account |
-| `GET` | `/all-account` | Retrieve all accounts |
-| `DELETE` | `/remove-account/{acc_num}` | Delete account by account number |
-| `PUT` | `/deposit/{pin}?amount={value}` | Deposit amount using PIN |
-| `PUT` | `/withdraw/{pin}?amount={value}` | Withdraw amount using PIN |
-| `PUT` | `/change-pin/{pin}?new_pin={value}` | Change account PIN |
+Frontend runs on:  
+👉 `http://127.0.0.1:5173`
 
 ---
 
-## 🧠 Example Requests
+## 🔗 API Endpoints
 
-### ➕ Add Account
-```json
-POST /add-account
-{
-  "account_number": "123456",
-  "account_title": "Awais",
-  "account_balance": 5000,
-  "account_pin": 1234
-}
-```
-
-### 💰 Deposit
-```bash
-PUT /deposit/1234?amount=1000
-```
-
-### 💸 Withdraw
-```bash
-PUT /withdraw/1234?amount=500
-```
-
-### 🔑 Change PIN
-```bash
-PUT /change-pin/1234?new_pin=5678
-```
+| Method | Endpoint                     | Description              |
+|--------|------------------------------|--------------------------|
+| GET    | `/all-account`               | Get all accounts         |
+| POST   | `/add-account`               | Add new account          |
+| PUT    | `/update-account/{id}`       | Update account title     |
+| DELETE | `/remove-account/{id}`       | Delete account           |
 
 ---
 
-## 🧾 Notes
-- Database file: `account.db`  
-- Data persists locally  
-- Interactive Swagger UI available at `/docs`
+## 🧠 Example Usage
+
+1. Open the frontend in your browser.  
+2. Add a new account with title and initial balance.  
+3. View all accounts on the “View Accounts” page.  
+4. Update or delete accounts directly using the action buttons.  
+
+---
+
+## 🧩 Screenshots
+
+| Add Account Page | View Accounts Page |
+|------------------|--------------------|
+| ![Add Account](./screenshots/add-account.png) | ![View Accounts](./screenshots/view-accounts.png) |
+
+---
+
+## 🛠️ Future Improvements
+
+- Deposit / Withdraw transaction system  
+- Transaction history logs  
+- User authentication (JWT-based login)  
+- Dashboard analytics (total deposits, withdrawals, etc.)  
+- Dark / Light mode switch  
 
 ---
 
 ## 👨‍💻 Author
 
-**Awais** – Software Engineer  
-Expertise: React | Node.js | Express | Laravel | FastAPI  
-🔗 [GitHub](https://github.com/Awais-Rasheed)
+**Awais Rasheed**  
+Software Engineer | Web Developer  
+📧 [awaisrasheedansari@gmail.com](mailto:awaisrasheedansari@gmail.com)
 
 ---
 
-## 📜 License
-This project is licensed under the MIT License – feel free to use and modify.
+## 🪪 License
+
+This project is licensed under the **MIT License**.  
+Feel free to use and modify it for your own learning or development purposes.
 ````
+
+---
+
