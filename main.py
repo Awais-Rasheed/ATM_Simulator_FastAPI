@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or ["http://localhost:3000"] for more security
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -110,4 +110,14 @@ def change_pin(pin: int, new_pin: int):
 
         return {"message": "✅ Account PIN changed successfully", "account": acc}
 
-    
+@app.get("/check-balance/{pin}")
+def check_balance(pin: int):
+    with Session(engine) as session:
+        statement = select(ATM).where(ATM.account_pin == pin)
+        acc = session.exec(statement).first()
+
+        if not acc:
+            raise HTTPException(status_code=404, detail="Account Not found")
+        
+        session.commit()
+        return acc.account_balance  

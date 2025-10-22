@@ -1,49 +1,47 @@
 import React, { useState } from "react";
+import { Box, TextField, Button } from "@mui/material";
+import { changePin } from "../services/pinService";
 import ATMDisplay from "../components/ATMDisplay";
-import { TextField, Button } from "@mui/material";
-import api from "../api";
 import { toast } from "react-toastify";
 
-function ChangePin() {
+const ChangePin = () => {
   const [oldPin, setOldPin] = useState("");
   const [newPin, setNewPin] = useState("");
 
   const handleChangePin = async () => {
     try {
-      await api.put(`/change-pin/${oldPin}?new_pin=${newPin}`);
-      toast.success("✅ PIN changed successfully!");
+      await changePin(oldPin, newPin);
+      toast.success("🔐 PIN changed successfully!");
       setOldPin("");
       setNewPin("");
-    } catch {
-      toast.error("❌ Failed to change PIN!");
+    } catch (error) {
+      toast.error("❌ Failed to change PIN. Please check your input.");
     }
   };
 
   return (
-    <ATMDisplay title="Change PIN">
-      <div>
+    <ATMDisplay title="🔐 Change PIN">
+      <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
         <TextField
           label="Old PIN"
           type="password"
           value={oldPin}
           onChange={(e) => setOldPin(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 }}
+          margin="dense"
         />
         <TextField
           label="New PIN"
           type="password"
           value={newPin}
           onChange={(e) => setNewPin(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 }}
+          margin="dense"
         />
-        <Button variant="contained" fullWidth onClick={handleChangePin}>
+        <Button variant="contained" sx={{ mt: 2 }} onClick={handleChangePin}>
           Change PIN
         </Button>
-      </div>
+      </Box>
     </ATMDisplay>
   );
-}
+};
 
 export default ChangePin;

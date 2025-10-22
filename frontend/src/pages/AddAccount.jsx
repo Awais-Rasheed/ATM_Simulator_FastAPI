@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Box, TextField, Button } from "@mui/material";
+import { addAccount } from "../services/accountService";
 import ATMDisplay from "../components/ATMDisplay";
-import { TextField, Button } from "@mui/material";
-import api from "../api";
 import { toast } from "react-toastify";
 
-function AddAccount() {
+const AddAccount = () => {
   const [account_number, setAccountNumber] = useState("");
   const [account_title, setAccountTitle] = useState("");
   const [account_balance, setAccountBalance] = useState("");
@@ -12,65 +12,61 @@ function AddAccount() {
 
   const handleAddAccount = async () => {
     try {
-      await api.post("/add-account", {
+      await addAccount({
         account_number,
         account_title,
-        account_balance: Number(account_balance),
-        account_pin: Number(account_pin),
+        account_balance: parseFloat(account_balance),
+        account_pin: parseInt(account_pin),
       });
-      toast.success("✅ Account Added Successfully!");
+      toast.success("✅ Account created successfully!");
       setAccountNumber("");
       setAccountTitle("");
       setAccountBalance("");
       setAccountPin("");
     } catch (error) {
-      toast.error("❌ Failed to add account!");
+      toast.error("❌ Failed to create account. Please check inputs.");
     }
   };
 
   return (
-    <ATMDisplay title="Add New Account">
-      <div style={{ width: "100%"}}>
+    <ATMDisplay title="➕ Add New Account">
+      <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
         <TextField
           label="Account Number"
           value={account_number}
           onChange={(e) => setAccountNumber(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 
-          }}
+          margin="dense"
         />
         <TextField
           label="Account Title"
           value={account_title}
           onChange={(e) => setAccountTitle(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 
-           }}
+          margin="dense"
         />
         <TextField
           label="Initial Balance"
           type="number"
           value={account_balance}
           onChange={(e) => setAccountBalance(e.target.value)}
-          fullWidth
-          sx={{ mb: 2  
-          }}
+          margin="dense"
         />
         <TextField
-          label="Set PIN"
+          label="PIN"
           type="password"
           value={account_pin}
           onChange={(e) => setAccountPin(e.target.value)}
-          fullWidth
-          sx={{ mb: 2  
-          }}
+          margin="dense"
         />
-        <Button variant="contained" fullWidth onClick={handleAddAccount}>
-          Create Account
+        <Button
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={handleAddAccount}
+        >
+          Add Account
         </Button>
-      </div>
+      </Box>
     </ATMDisplay>
   );
-}
+};
 
 export default AddAccount;

@@ -1,20 +1,9 @@
-
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
-  Box,
-  Typography,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Paper,
-  CircularProgress,
-  Button,
-  Stack,
+  Box, Typography, Table, TableHead, TableBody,
+  TableRow, TableCell, TableContainer, Paper, Button, CircularProgress
 } from "@mui/material";
+import { getAllAccounts, deleteAccount } from "../services/accountService";
 import ATMDisplay from "../components/ATMDisplay";
 import { toast } from "react-toastify";
 
@@ -22,57 +11,28 @@ const ViewAccounts = () => {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all accounts
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/all-account");
+      const response = await getAllAccounts();
       setAccounts(response.data);
-      setLoading(false);
     } catch (error) {
-      console.error("Error fetching accounts:", error);
+      toast.error("Failed to fetch accounts!");
+    } finally {
       setLoading(false);
     }
   };
 
-  // Delete account
-  const handleDelete = async (account_number) => {
-    toast.info(
-      <div>
-        <p>Are you sure you want to delete this account?</p>
-        <Stack direction="row" spacing={2} justifyContent="center">
-          <Button
-            variant="contained"
-            color="error"
-            size="small"
-            onClick={async () => {
-              try {
-                await axios.delete(`http://127.0.0.1:8000/remove-account/${account_number}`);
-                toast.dismiss();
-                toast.success("🗑️ Account deleted successfully!");
-                fetchAccounts();
-              } catch (error) {
-                toast.dismiss();
-                toast.error("❌ Failed to delete account!");
-              }
-            }}
-          >
-            Yes
-          </Button>
-          <Button
-            variant="outlined"
-            color="inherit"
-            size="small"
-            onClick={() => toast.dismiss()}
-          >
-            No
-          </Button>
-        </Stack>
-      </div>,
-      { autoClose: false, closeOnClick: false, draggable: false }
-    );
+  const handleDelete = async (accNum) => {
+    if (window.confirm("Are you sure you want to delete this account?")) {
+      try {
+        await deleteAccount(accNum);
+        toast.success("Account deleted successfully!");
+        fetchAccounts();
+      } catch (error) {
+        toast.error("Error deleting account!");
+      }
+    }
   };
-
-  
 
   useEffect(() => {
     fetchAccounts();
@@ -81,28 +41,16 @@ const ViewAccounts = () => {
   return (
     <ATMDisplay title="🏦 All Accounts Overview">
       {loading ? (
-        <CircularProgress color="primary" />
-      ) : accounts.length === 0 ? (
-        <Typography>No accounts found.</Typography>
+        <CircularProgress />
       ) : (
-        <TableContainer
-          component={Paper}
-          sx={{
-            width: "100%",
-            boxShadow: "none",
-            backgroundColor: "#f9f9f9",
-            borderRadius: "10px",
-          }}
-        >
-          <Table size="small" aria-label="accounts table">
+        <TableContainer component={Paper}>
+          <Table>
             <TableHead>
-              <TableRow sx={{ backgroundColor: "#00bcd4" }}>
-                <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Account No</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Title</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Balance (PKR)</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#fff" }} align="center">
-                  Actions
-                </TableCell>
+              <TableRow>
+                <TableCell>Account No</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Balance (PKR)</TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -110,19 +58,16 @@ const ViewAccounts = () => {
                 <TableRow key={acc.id}>
                   <TableCell>{acc.account_number}</TableCell>
                   <TableCell>{acc.account_title}</TableCell>
-                  <TableCell>{acc.account_balance.toLocaleString()}</TableCell>
-                  <TableCell align="center">
-                    <Stack direction="row" spacing={1} justifyContent="center">
-                      
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        size="small"
-                        onClick={() => handleDelete(acc.account_number)}
-                      >
-                        🗑️ Delete
-                      </Button>
-                    </Stack>
+                  <TableCell>{acc.account_balance}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleDelete(acc.account_number)}
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

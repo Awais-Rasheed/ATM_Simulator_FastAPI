@@ -1,49 +1,47 @@
 import React, { useState } from "react";
+import { Box, TextField, Button } from "@mui/material";
+import { depositAmount } from "../services/transactionService";
 import ATMDisplay from "../components/ATMDisplay";
-import { TextField, Button } from "@mui/material";
-import api from "../api";
 import { toast } from "react-toastify";
 
-function Deposit() {
+const Deposit = () => {
   const [pin, setPin] = useState("");
   const [amount, setAmount] = useState("");
 
   const handleDeposit = async () => {
     try {
-      await api.put(`/deposit/${pin}?amount=${amount}`);
-      toast.success("✅ Deposit successful!");
-      setAmount("");
+      await depositAmount(pin, amount);
+      toast.success("Deposit successful!");
       setPin("");
-    } catch (err) {
-      toast.error("❌ Deposit failed!");
+      setAmount("");
+    } catch (error) {
+      toast.error("Failed to deposit. Please check your PIN or amount.");
     }
   };
 
   return (
-    <ATMDisplay title="Deposit Money">
-      <div>
+    <ATMDisplay title="💰 Deposit Cash">
+      <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
         <TextField
-          label="Enter PIN"
+          label="PIN"
           type="password"
           value={pin}
           onChange={(e) => setPin(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 }}
+          margin="normal"
         />
         <TextField
-          label="Enter Amount"
+          label="Amount"
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          fullWidth
-          sx={{ mb: 2 }}
+          margin="normal"
         />
-        <Button variant="contained" fullWidth onClick={handleDeposit}>
+        <Button variant="contained" onClick={handleDeposit}>
           Deposit
         </Button>
-      </div>
+      </Box>
     </ATMDisplay>
   );
-}
+};
 
 export default Deposit;

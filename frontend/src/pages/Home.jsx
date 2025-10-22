@@ -24,7 +24,7 @@ function Home() {
           onClick={() => navigate("/deposit")}
         >
           💰 Deposit
-        </Button>
+        </Button> 
 
         <Button
           variant="contained"
