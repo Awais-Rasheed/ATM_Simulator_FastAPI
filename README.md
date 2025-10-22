@@ -10,7 +10,7 @@ A **full-stack ATM Management System** built with **React (frontend)** and **Fas
 
 | ATM Simulator Demo |
 |--------------------|
-| ![ATM Demo](./screenshots/ATM_Simulator_FastAPI.webm) |
+| ![ATM Demo](./screenshots/ATM_Simulator_FastAPI.gif) |
 
 *(You can record your screen using OBS Studio or ScreenToGif, then export a GIF and place it in `/frontend/public/screenshots/demo.gif`.)*
 
