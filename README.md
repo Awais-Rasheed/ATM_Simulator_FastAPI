@@ -6,13 +6,17 @@ A **full-stack ATM Management System** built with **React (frontend)** and **Fas
 
 ## 🎥 Quick Demo
 
-> 🎬 Add your demo GIF or short video here to show the project in action!
 
 | ATM Simulator Demo |
 |--------------------|
 | ![ATM Demo](./screenshots/ATM_Simulator_FastAPI.gif) |
 
-*(You can record your screen using OBS Studio or ScreenToGif, then export a GIF and place it in `/frontend/public/screenshots/demo.gif`.)*
+<video src="https://raw.githubusercontent.com/Awais-Rasheed/ATM_Simulator_FastAPI/blob/main/frontend/public/screenshots/ATM_Simulator_FastAPI.webm"
+       controls
+       width="600">
+</video>
+
+🎥 [Click here if the video doesn’t load](https://raw.githubusercontent.com/Awais-Rasheed/ATM_Simulator_FastAPI/main/frontend/public/screenshots/ATM_Simulator_FastAPI.webm)
 
 ---
 
