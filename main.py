@@ -1,8 +1,17 @@
 from fastapi import FastAPI, HTTPException
 from sqlmodel import SQLModel, select, Session, Field, create_engine
 from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://localhost:3000"] for more security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 DATABASE_URL = "sqlite:///account.db"
 engine = create_engine(DATABASE_URL, echo=True)
