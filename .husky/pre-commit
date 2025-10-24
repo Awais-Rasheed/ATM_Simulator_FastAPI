@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
 
 echo "🔍 Running ESLint before commit..."
-npm run eslint
+cd frontend || exit 1
+npm run eslint || exit 1
