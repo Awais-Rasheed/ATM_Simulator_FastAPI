@@ -15,6 +15,7 @@ const CheckBalance = () => {
       toast.success("✅ Balance fetched successfully!");
       console.log("Balance", res.data)
     } catch (error) {
+      console.error(error);
       toast.error("❌ Invalid PIN or account not found.");
       setBalance(null);
     }

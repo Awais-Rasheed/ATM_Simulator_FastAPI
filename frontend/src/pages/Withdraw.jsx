@@ -15,6 +15,7 @@ const Withdraw = () => {
       setPin("");
       setAmount("");
     } catch (error) {
+      console.error(error);
       toast.error("❌ Withdrawal failed. Check balance or PIN.");
     }
   };

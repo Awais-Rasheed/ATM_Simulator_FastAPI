@@ -15,6 +15,7 @@ const Deposit = () => {
       setPin("");
       setAmount("");
     } catch (error) {
+      console.error(error);
       toast.error("Failed to deposit. Please check your PIN or amount.");
     }
   };

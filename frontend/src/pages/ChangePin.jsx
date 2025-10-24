@@ -15,6 +15,7 @@ const ChangePin = () => {
       setOldPin("");
       setNewPin("");
     } catch (error) {
+      console.error(error);
       toast.error("❌ Failed to change PIN. Please check your input.");
     }
   };

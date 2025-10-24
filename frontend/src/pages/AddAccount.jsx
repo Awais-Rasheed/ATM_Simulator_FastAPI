@@ -24,6 +24,7 @@ const AddAccount = () => {
       setAccountBalance("");
       setAccountPin("");
     } catch (error) {
+      console.error(error);
       toast.error("❌ Failed to create account. Please check inputs.");
     }
   };

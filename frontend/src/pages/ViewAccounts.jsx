@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box, Typography, Table, TableHead, TableBody,
+ Table, TableHead, TableBody,
   TableRow, TableCell, TableContainer, Paper, Button, CircularProgress
 } from "@mui/material";
 import { getAllAccounts, deleteAccount } from "../services/accountService";
@@ -16,6 +16,7 @@ const ViewAccounts = () => {
       const response = await getAllAccounts();
       setAccounts(response.data);
     } catch (error) {
+      console.error(error);
       toast.error("Failed to fetch accounts!");
     } finally {
       setLoading(false);
@@ -29,6 +30,7 @@ const ViewAccounts = () => {
         toast.success("Account deleted successfully!");
         fetchAccounts();
       } catch (error) {
+        console.error(error);
         toast.error("Error deleting account!");
       }
     }
