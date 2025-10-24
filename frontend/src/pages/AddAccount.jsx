@@ -19,12 +19,12 @@ const AddAccount = () => {
         account_pin: parseInt(account_pin),
       });
       toast.success("✅ Account created successfully!");
-setAccountNumber("");
+      setAccountNumber("");
       setAccountTitle("");
-setAccountBalance("");
-setAccountPin("");
+      setAccountBalance("");
+      setAccountPin("");
     } catch (error) {
-      // console.error(error);
+      
       toast.error("❌ Failed to create account. Please check inputs.");
     }
   };
