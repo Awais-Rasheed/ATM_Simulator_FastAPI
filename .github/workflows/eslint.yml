@@ -1,0 +1,31 @@
+name: ESLint Check (Frontend)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: Lint Frontend Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies (frontend)
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run ESLint (frontend)
+        run: |
+          cd frontend
+          npm run eslint -- --max-warnings=0
