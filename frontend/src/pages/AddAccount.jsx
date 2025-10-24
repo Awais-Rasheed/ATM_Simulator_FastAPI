@@ -24,7 +24,7 @@ setAccountNumber("");
 setAccountBalance("");
 setAccountPin("");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("❌ Failed to create account. Please check inputs.");
     }
   };
