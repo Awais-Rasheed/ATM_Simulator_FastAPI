@@ -8,6 +8,10 @@ const ChangePin = () => {
   const [oldPin, setOldPin] = useState("");
   const [newPin, setNewPin] = useState("");
 
+   const test = 1123;
+  const test1 = 1123;
+  const test2 = 1123;
+  
   const handleChangePin = async () => {
     try {
       await changePin(oldPin, newPin);
