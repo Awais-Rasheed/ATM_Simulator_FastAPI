@@ -10,6 +10,8 @@ const AddAccount = () => {
   const [account_balance, setAccountBalance] = useState("");
   const [account_pin, setAccountPin] = useState("");
 
+  const test = 123;
+
   const handleAddAccount = async () => {
     try {
       await addAccount({
