@@ -5,7 +5,7 @@ import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  // Base JavaScript rules
+  
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
     languageOptions: {
@@ -21,14 +21,14 @@ export default defineConfig([
     },
     settings: {
       react: {
-        version: "detect", // 👈 fixes React version warning
+        version: "detect", 
       },
     },
     rules: {
       ...js.configs.recommended.rules,
       ...pluginReact.configs.flat.recommended.rules,
-      "react/prop-types": "off", // 👈 turn off if not using PropTypes
-      "no-unused-vars": "warn", // 👈 show warning instead of error
+      "react/prop-types": "off", 
+      "no-unused-vars": "warn", 
     },
   },
 ]);
