@@ -11,9 +11,9 @@ const CheckBalance = () => {
   const handleCheckBalance = async () => {
     try {
       const res = await checkBalance(pin);
-      setBalance(res.data);
+      setBalance(res.data.balance);
       toast.success("✅ Balance fetched successfully!");
-      console.log("Balance", res.data)
+      console.log("Balance", res.data.balance)
     } catch (error) {
       console.error(error);
       toast.error("❌ Invalid PIN or account not found.");
