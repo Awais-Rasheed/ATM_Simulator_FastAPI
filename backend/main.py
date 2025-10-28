@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI #type:ignore
+from fastapi.middleware.cors import CORSMiddleware #type:ignore
 from config.database import create_tables_DB
 from routes.atm_routes import router as atm_router
 
