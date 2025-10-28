@@ -5,3 +5,6 @@ __pycache__/
 ATM_venv/
 node/
 venv/
+
+.github/
+node_modules/
