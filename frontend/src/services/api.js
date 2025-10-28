@@ -4,7 +4,7 @@ export const BASE_URL = "http://127.0.0.1:8000";
 export const ENDPOINTS = {
   // Account APIs
   ADD_ACCOUNT: `${BASE_URL}/add-account`,
-  ALL_ACCOUNTS: `${BASE_URL}/all-account`,
+  ALL_ACCOUNTS: `${BASE_URL}/all-accounts`,
   REMOVE_ACCOUNT: (acc_num) => `${BASE_URL}/remove-account/${acc_num}`,
 
   // Transaction APIs

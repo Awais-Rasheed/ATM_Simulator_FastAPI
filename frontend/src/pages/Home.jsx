@@ -8,7 +8,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <ATMDisplay title="🏦 Bank ATM">
+    <ATMDisplay title="🏦ATM">
       <Stack spacing={2} sx={{ width: "80%" }}>
         <Button
           variant="contained"
