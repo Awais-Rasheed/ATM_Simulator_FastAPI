@@ -1,4 +1,4 @@
-from sqlmodel import Session, select
+from sqlmodel import Session, select #type:ignore
 from fastapi import HTTPException
 from config.database import engine
 from models.atm_model import ATM
